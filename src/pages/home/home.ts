@@ -1,7 +1,7 @@
 import { ChatServiceProvider } from './../../providers/chat-service/chat-service';
 import { IChat } from './../../models/chatModel';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 
 @Component({
