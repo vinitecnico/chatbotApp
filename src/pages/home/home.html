@@ -1,35 +1,54 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>ChatBot</ion-title>
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            ChatBot
+          </ion-col>
+          <ion-col col-6>
+            <ion-list>
+              <ion-item>
+                <ion-label>Language</ion-label>
+                <ion-select [(ngModel)]="lang">
+                  <ion-option value="en">en</ion-option>
+                  <ion-option value="pt-br">pt-BR</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <div class="chats">
-      <div class="chatbox">
-        <div *ngFor="let chat of chats">
-          <div class="message sent" *ngIf="chat.type!=='bot' && chat.isMe">
-            {{chat.message}}
-            <span class="metadata">
-              <span class="time">{{chat.createdAt | date: 'HH:mm aaa'}}</span>
-            </span>
-          </div>
-          <div class="message received"  *ngIf="chat.type =='bot' && !chat.isMe">
-            {{chat.message}}
-            <span class="metadata">
-              <span class="time">{{chat.createdAt | date: 'HH:mm aaa'}}</span>
-            </span>
-          </div>
+  <div class="chats">
+    <div class="chatbox">
+      <div *ngFor="let chat of chats">
+        <div class="message sent" *ngIf="chat.type!=='bot' && chat.isMe">
+          {{chat.message}}
+          <span class="metadata">
+            <span class="time">{{chat.createdAt | date: 'HH:mm aaa'}}</span>
+          </span>
+        </div>
+        <div class="message received" *ngIf="chat.type =='bot' && !chat.isMe">
+          {{chat.message}}
+          <span class="metadata">
+            <span class="time">{{chat.createdAt | date: 'HH:mm aaa'}}</span>
+          </span>
         </div>
       </div>
-      </div>
+    </div>
+  </div>
 
   <ion-footer>
-      <p text-center *ngIf="sending">sending...</p>
-      <div class="flex-items" padding>
+    <p text-center *ngIf="sending">sending...</p>
+    <div class="flex-items" padding>
 
-          <ion-input [(ngModel)]="message" name="message" class="input_message" placeholder="send message ..."></ion-input>
-          <ion-icon (click)="sendMessage()" class="send" name="send"></ion-icon>
-        </div>
+      <ion-input [(ngModel)]="message" name="message" class="input_message" placeholder="send message ..."></ion-input>
+      <ion-icon (click)="sendMessage()" class="send" name="send"></ion-icon>
+    </div>
   </ion-footer>
 </ion-content>

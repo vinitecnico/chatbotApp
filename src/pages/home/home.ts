@@ -12,6 +12,7 @@ export class HomePage {
   chats: IChat[] = [];
   message: string;
   sending: boolean;
+  lang: string = 'en';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private _chat: ChatServiceProvider) {
   }
@@ -27,7 +28,7 @@ export class HomePage {
   }
   sendMessage() {
     this.sending = true;
-    this._chat.sendMessage(this.message)
+    this._chat.sendMessage(this.message, this.lang)
       .subscribe(resp => {
         this.message = '';
         this.sending = false;

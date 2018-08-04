@@ -6,18 +6,19 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ChatServiceProvider {
 
-  private _url = 'https://chatbotwebapi.herokuapp.com';
-  //'http://localhost:8080';
+  // private _url = 'https://chatbotwebapi.herokuapp.com';
+  private _url ='http://localhost:8080';
   private _channel: any;
   constructor(public http: HttpClient, private _pusher: PusherProvider) {
     this._channel = this._pusher.getPusher().subscribe('chat-bot');
   }
 
 
-  sendMessage(message: string): Observable<any> {
+  sendMessage(message: string, lang: string): Observable<any> {
     const param = {
       type: 'human',
       message,
+      lang
     };
     return this.http.post(`${this._url}/api/message`, param)
   }
